@@ -1,0 +1,97 @@
+<div class="modal-header">
+  <h4 class="modal-title">{{titre}}</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form class="form" name="form" #f="ngForm" (ngSubmit)="this.mangerForm(f)">
+<div class="row">
+  <div class="col-md-6">
+    <div class="form-group row">
+      <label class="col-sm-3 col-form-label">Nom</label>
+      <div class="col-sm-9">
+        <input type="text" class="form-control" id="Name" placeholder="" name="nom" [(ngModel)]="this.model.nom" #nom="ngModel" required>
+      </div>
+    </div>
+    <div *ngIf="(nom.invalid && nom.touched)" class="alert alert-danger p-2" role="alert">
+      Saisir la nom
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="form-group row">
+      <label class="col-sm-3 col-form-label">CIN</label>
+      <div class="col-sm-9">
+        <input type="text" class="form-control" id="cin" placeholder="" name="cin" [(ngModel)]="this.model.cin" #cin="ngModel"  required>
+      </div>
+    </div>
+    <div *ngIf="(cin.invalid && cin.touched)" class="alert alert-danger p-2" role="alert">
+      Saisir la CIN
+    </div>
+  </div>
+</div>
+<div class="row">
+
+  <div class="col-md-6">
+    <div class="form-group row">
+      <label class="col-sm-3 col-form-label">Numero Tel</label>
+      <div class="col-sm-9">
+        <input type="text" class="form-control" id="Name" placeholder="" name="telephone" [(ngModel)]="this.model.telephone" #telephone="ngModel" required>
+      </div>
+    </div>
+    <div *ngIf="(telephone.invalid && telephone.touched)" class="alert alert-danger p-2" role="alert">
+      Saisir Numero Tel
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <div class="form-group row">
+      <label class="col-sm-3 col-form-label">Nom d'utilisateur</label>
+      <div class="col-sm-9">
+        <input type="text" class="form-control" id="Name" placeholder="" name="username" [(ngModel)]="this.model.username" #username="ngModel" required>
+      </div>
+    </div>
+    <div *ngIf="(username.invalid && username.touched)" class="alert alert-danger p-2" role="alert">
+      Saisir la Nom d'utilisateur
+    </div>
+  </div>
+
+
+</div>
+<div class="row">
+  <div class="col-md-6">
+    <div class="form-group row">
+      <label class="col-sm-3 col-form-label">Mot de passe</label>
+      <div class="col-sm-9">
+        <input type="text" class="form-control" id="Name"  placeholder="EX..12345678"name="passworad" [(ngModel)]="this.model.passworad" #passworad="ngModel" required>
+      </div>
+    </div>
+    <div *ngIf="(passworad.invalid && passworad.touched)" class="alert alert-danger p-2" role="alert">
+      Saisir le Mot de passe
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="form-group row">
+      <label class="col-sm-3 col-form-label">Type</label>
+      <div class="col-sm-9">
+        <select class="form-control" [(ngModel)]="this.model.type" name="type" #type="ngModel" required>
+          <option></option>
+          <option>Super administrateur</option>
+          <option>Administrateur</option>
+          <option>Utilisateur</option>
+          <option>Simple</option>
+        </select>
+      </div>
+    </div>
+    <div *ngIf="(type.invalid && type.touched)" class="alert alert-danger p-2" role="alert">
+      Saisir la Type
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button *ngIf="this.add" type="submit" class="btn btn-primary" [disabled]="f.invalid" >Ajouter</button>
+  <button *ngIf="!this.add" type="submit" class="btn btn-primary" [disabled]="f.invalid">Modifier</button>
+  <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
+</div>
+</form>
+</div>

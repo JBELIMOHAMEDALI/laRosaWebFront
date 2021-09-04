@@ -1,0 +1,92 @@
+<nav class="sidebar sidebar-offcanvas" id="sidebar">
+  <ul class="nav">
+    <li class="nav-item nav-profile">
+      <div class="nav-link">
+        <div class="profile-image">
+          <img src="./assets/images/faces/img.jpg" alt="image" />
+        </div>
+        <div class="profile-name">
+          <p class="name">
+            Bienvenu Yassine
+          </p>
+          <p class="designation">
+            Super administrateur </p>
+        </div>
+      </div>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink='/dashboard' routerLinkActive="active">
+        <i class="fa fa-home menu-icon"></i>
+        <span class="menu-title">Accueil</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink='/payment'>
+        <i class="far fa-money-bill-alt menu-icon"></i>
+        <span class="menu-title">Paiement groupé</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink='/articles'>
+        <i class="fa fa-shopping-basket menu-icon"></i>
+        <span class="menu-title">Articles</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink='/commercial'>
+        <i class="fas fa-truck menu-icon"></i>
+        <span class="menu-title">Commercial</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink='/clients'>
+        <i class="fa fa-users menu-icon"></i>
+        <span class="menu-title">Clients</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink='/contrats'>
+        <i class="fas fa-file-contract menu-icon"></i>
+        <span class="menu-title">Contrat client</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink='/statistics'>
+        <i class="fas fa-chart-line menu-icon"></i>
+        <span class="menu-title">Statistique contrat</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink='/bes'>
+        <i class="fas fa-file-import menu-icon"></i>
+        <span class="menu-title">Bon d'entrée</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink='/bss'>
+        <i class="fas fa-file-export menu-icon"></i>
+        <span class="menu-title">Bon de sortie</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="collapse" href="#page-layouts" aria-expanded="false"
+        aria-controls="page-layouts">
+        <i class="fas fa-map-marked-alt menu-icon"></i>
+        <span class="menu-title">Zone / Région</span>
+        <i class="menu-arrow"></i>
+      </a>
+      <div class="collapse" id="page-layouts">
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item"> <a class="nav-link" routerLink='/zone'>Zone</a></li>
+          <li class="nav-item d-none d-lg-block"> <a class="nav-link" routerLink='/region'>Région</a></li>
+        </ul>
+      </div>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink='/users'>
+        <i class="fas fa-users-cog menu-icon"></i>
+        <span class="menu-title">Utilisateurs</span>
+      </a>
+    </li>
+  </ul>
+</nav>

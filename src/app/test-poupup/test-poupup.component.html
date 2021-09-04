@@ -1,0 +1,39 @@
+<div class="modal-header">
+  <h4 class="modal-title">{{titre}}</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form class="form" name="form" #f="ngForm" (ngSubmit)="this.mangerForm(f)">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label">2éme Annuité</label>
+        <div class="col-sm-9">
+          <input type="number" class="form-control" id="Name" placeholder="" name="annuite2" [(ngModel)]="this.model.annuite2" #annuite2="ngModel" required>
+        </div>
+      </div>
+      <div *ngIf="(annuite2.invalid && annuite2.touched)" class="alert alert-danger p-2" role="alert">
+        Saisir la 2éme Annuité
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label">2éme Mensualité</label>
+        <div class="col-sm-9">
+          <input type="number" class="form-control" id="Name" placeholder="" name="mensualite2" [(ngModel)]="this.model.mensualite2" #mensualite2="ngModel" required>
+        </div>
+      </div>
+      <div *ngIf="(mensualite2.invalid && mensualite2.touched)" class="alert alert-danger p-2" role="alert">
+        Saisir la 2éme Mensualité
+      </div>
+    </div>
+  </div>
+<div class="modal-footer">
+  <button *ngIf="this.add" type="submit" class="btn btn-primary" [disabled]="f.invalid" >Ajouter</button>
+  <button *ngIf="!this.add" type="submit" class="btn btn-primary" [disabled]="f.invalid">Modifier</button>
+  <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
+</div>
+</form>
+</div>

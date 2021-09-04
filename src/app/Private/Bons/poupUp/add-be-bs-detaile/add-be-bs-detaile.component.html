@@ -1,0 +1,74 @@
+<div class="modal-header">
+  <h4 class="modal-title">{{titre}}</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form class="form" name="form" #f="ngForm" (ngSubmit)="this.mangerForm(f)">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group row">
+          <label class="col-sm-3 col-form-label">Numero de contrat</label>
+          <div class="col-sm-9">
+            <ng-select [items]="listContra"
+            bindLabel="numero"
+            appendTo="body"
+            placeholder="Numero de contrat"
+            [searchable]="true"
+            [(ngModel)]="this.model.num_contrat"
+            #num_contrat="ngModel"
+            name="num_contrat"
+           required >
+
+          </ng-select>
+
+          </div>
+        </div>
+        <div *ngIf="(num_contrat.invalid && num_contrat.touched)" class="alert alert-danger p-2" >
+          Sélectionner un Numero de contrat
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group row">
+          <label class="col-sm-3 col-form-label">Région</label>
+          <div class="col-sm-9">
+            <select class="form-control"  (change)="getRegion($event)" [(ngModel)]="this.model.region" name="region" #region="ngModel" required>
+              <ng-container *ngFor="let r of this.listRegion ">
+              <option [value]="r.id">{{r.nom_region}}</option>
+             </ng-container>
+            </select>
+          </div>
+        </div>
+        <div *ngIf="(region.invalid && region.touched)" class="alert alert-danger p-2" role="alert">
+          selectionner la Région
+        </div>
+      </div>
+      <div  class="col-md-12">
+        <div class="form-group row">
+          <label class="col-sm-3 col-form-label">Zone</label>
+          <div class="col-sm-9">
+            <select class="form-control" [(ngModel)]="this.model.zone" name="zone" #zone="ngModel" required>
+              <ng-container *ngFor="let z of this.listZone ">
+              <option [value]="z.nom_zone">{{z.nom_zone}}</option>
+             </ng-container>
+            </select>
+          </div>
+        </div>
+        <div *ngIf="(zone.invalid && zone.touched)" class="alert alert-danger p-2" role="alert">
+          selectionner la Zone
+        </div>
+      </div>
+
+
+
+    </div>
+<div class="modal-footer">
+  <button *ngIf="this.add" type="submit" class="btn btn-primary" [disabled]="f.invalid" >Ajouter</button>
+  <button *ngIf="!this.add" type="submit" class="btn btn-primary" [disabled]="f.invalid">Modifier</button>
+  <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
+</div>
+</form>
+</div>

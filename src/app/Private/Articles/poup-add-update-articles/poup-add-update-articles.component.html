@@ -1,0 +1,112 @@
+<div class="modal-header">
+  <h4 class="modal-title">{{titre}}</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form class="form" name="form" #f="ngForm" (ngSubmit)="this.mangArt(f)">
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label">Référence</label>
+        <div class="col-sm-9">
+          <input value="Art-04" type="text" class="form-control" id="ref" placeholder="" name="ref" [(ngModel)]="this.model.ref" #ref="ngModel" required>
+        </div>
+      </div>
+      <div *ngIf="(ref.invalid && ref.touched)" class="alert alert-danger p-2" role="alert">
+        Saisir la Référence
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label">Nom</label>
+        <div class="col-sm-9">
+          <input type="text" class="form-control" id="Name" placeholder="" name="nom" [(ngModel)]="this.model.nom" #nom="ngModel" required>
+        </div>
+      </div>
+      <div *ngIf="(nom.invalid && nom.touched)" class="alert alert-danger p-2" role="alert">
+        Saisir la nom
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label">Prix</label>
+        <div class="col-sm-9">
+          <input type="number" class="form-control" id="Name" placeholder="" name="prix" [(ngModel)]="this.model.prix" #prix="ngModel" required>
+        </div>
+      </div>
+      <div *ngIf="(prix.invalid && prix.touched)" class="alert alert-danger p-2" role="alert">
+        Saisir Prix
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label">Avance</label>
+        <div class="col-sm-9">
+          <input type="number" class="form-control" id="mavance" placeholder="" name="mavance" [(ngModel)]="this.model.mavance" #mavance="ngModel" required>
+        </div>
+      </div>
+      <div *ngIf="(mavance.invalid && mavance.touched)" class="alert alert-danger p-2" role="alert">
+        Saisir la Avance
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label">Annuité</label>
+        <div class="col-sm-9">
+          <input type="number" class="form-control" id="annuite" placeholder="" name="annuite" [(ngModel)]="this.model.annuite" #annuite="ngModel" required>
+        </div>
+      </div>
+      <div *ngIf="(annuite.invalid && annuite.touched)" class="alert alert-danger p-2" role="alert">
+        Saisir la Annuité
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label">Mensualité</label>
+        <div class="col-sm-9">
+          <input type="number" class="form-control" id="Name" placeholder="" name="mensualite" [(ngModel)]="this.model.mensualite" #mensualite="ngModel" required>
+        </div>
+      </div>
+      <div *ngIf="(mensualite.invalid && mensualite.touched)" class="alert alert-danger p-2" role="alert">
+        Saisir la Mensualité
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label">2éme Annuité</label>
+        <div class="col-sm-9">
+          <input type="number" class="form-control" id="Name" placeholder="" name="annuite2" [(ngModel)]="this.model.annuite2" #annuite2="ngModel" required>
+        </div>
+      </div>
+      <div *ngIf="(annuite2.invalid && annuite2.touched)" class="alert alert-danger p-2" role="alert">
+        Saisir la 2éme Annuité
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label">2éme Mensualité</label>
+        <div class="col-sm-9">
+          <input type="number" class="form-control" id="Name" placeholder="" name="mensualite2" [(ngModel)]="this.model.mensualite2" #mensualite2="ngModel" required>
+        </div>
+      </div>
+      <div *ngIf="(mensualite2.invalid && mensualite2.touched)" class="alert alert-danger p-2" role="alert">
+        Saisir la 2éme Mensualité
+      </div>
+    </div>
+  </div>
+<div class="modal-footer">
+  <button *ngIf="this.add" type="submit" class="btn btn-primary" [disabled]="f.invalid" >Ajouter</button>
+  <button *ngIf="!this.add" type="submit" class="btn btn-primary" [disabled]="f.invalid">Modifier</button>
+  <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
+</div>
+</form>
+</div>

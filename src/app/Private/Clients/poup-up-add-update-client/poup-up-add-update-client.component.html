@@ -1,0 +1,126 @@
+<div class="modal-header">
+  <h4 class="modal-title">{{titre}}</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form class="form" name="form" #f="ngForm" (ngSubmit)="this.mangerForm(f)">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group row">
+          <label class="col-sm-3 col-form-label">Genre</label>
+          <div class="col-sm-9">
+            <select class="form-control" [(ngModel)]="this.model.genre" name="genre" #genre="ngModel" required>
+              <option></option>
+              <option >Mr</option>
+              <option>Mme</option>
+            </select>
+          </div>
+        </div>
+        <div *ngIf="(genre.invalid && genre.touched)" class="alert alert-danger p-2" role="alert">
+          selectionner la Genre
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group row">
+          <label class="col-sm-3 col-form-label">Nom</label>
+          <div class="col-sm-9">
+            <input type="text" class="form-control" id="Name" placeholder="" name="nom" [(ngModel)]="this.model.nom" #nom="ngModel" required>
+          </div>
+        </div>
+        <div *ngIf="(nom.invalid && nom.touched)" class="alert alert-danger p-2" role="alert">
+          Saisir la nom
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group row">
+          <label class="col-sm-3 col-form-label"> Tel 1</label>
+          <div class="col-sm-9">
+            <input type="text" class="form-control" id="Name" placeholder="" name="tel1" [(ngModel)]="this.model.tel1" #tel1="ngModel" required>
+          </div>
+        </div>
+        <div *ngIf="(tel1.invalid && tel1.touched)" class="alert alert-danger p-2" role="alert">
+          Saisir Numero Tel
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group row">
+          <label class="col-sm-3 col-form-label">Tel 2</label>
+          <div class="col-sm-9">
+            <input type="text" class="form-control" id="Name" placeholder="" name="tel2" [(ngModel)]="this.model.tel2" #tel2="ngModel"  >
+          </div>
+        </div>
+        <!-- <div *ngIf="(tel2.invalid && tel2.touched)" class="alert alert-danger p-2" role="alert">
+          Saisir Numero Tel
+        </div> -->
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group row">
+          <label class="col-sm-3 col-form-label">CIN</label>
+          <div class="col-sm-9">
+            <input type="text" class="form-control" id="cin" placeholder="" name="cin" [(ngModel)]="this.model.cin" #cin="ngModel"  required>
+          </div>
+        </div>
+        <div *ngIf="(cin.invalid && cin.touched)" class="alert alert-danger p-2" role="alert">
+          Saisir la CIN
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group row">
+          <label class="col-sm-3 col-form-label">Adresse</label>
+          <div class="col-sm-9">
+            <input type="text" class="form-control" id="adresse" placeholder="" name="adresse" [(ngModel)]="this.model.adresse" #adresse="ngModel"  required>
+          </div>
+        </div>
+        <div *ngIf="(adresse.invalid && adresse.touched)" class="alert alert-danger p-2" role="alert">
+          Saisir la Adresse
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group row">
+          <label class="col-sm-3 col-form-label">Région</label>
+          <div class="col-sm-9">
+            <select class="form-control"  (change)="getRegion($event)" [(ngModel)]="this.model.region" name="region" #region="ngModel" required>
+              <ng-container *ngFor="let r of this.listRegion ">
+              <option [value]="r.id">{{r.nom_region}}</option>
+             </ng-container>
+            </select>
+          </div>
+        </div>
+        <div *ngIf="(region.invalid && region.touched)" class="alert alert-danger p-2" role="alert">
+          selectionner la Région
+        </div>
+      </div>
+      <div  class="col-md-6">
+        <div class="form-group row">
+          <label class="col-sm-3 col-form-label">Zone</label>
+          <div class="col-sm-9">
+            <select class="form-control" [(ngModel)]="this.model.zone" name="zone" #zone="ngModel" required>
+              <ng-container *ngFor="let z of this.listZone ">
+              <option [value]="z.nom_zone">{{z.nom_zone}}</option>
+             </ng-container>
+            </select>
+          </div>
+        </div>
+        <div *ngIf="(zone.invalid && zone.touched)" class="alert alert-danger p-2" role="alert">
+          selectionner la Zone
+        </div>
+      </div>
+
+
+
+    </div>
+<div class="modal-footer">
+  <button *ngIf="this.add" type="submit" class="btn btn-primary" [disabled]="f.invalid" >Ajouter</button>
+  <button *ngIf="!this.add" type="submit" class="btn btn-primary" [disabled]="f.invalid">Modifier</button>
+  <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
+</div>
+</form>
+</div>
