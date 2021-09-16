@@ -153,12 +153,6 @@ next: (data) => {
 })
 });
 
-
-
-
-
-
-//end 10 row
           this.router.navigate(['/contrats']);
           swal('Success', '', 'success');
 
@@ -210,7 +204,6 @@ next: (data) => {
 
     }
   }
-
   chek2(avance: number, nbrmonth1: number, prixmonth1: number, nbrmonth2: number, prixmonth2: number, toutaleprix: number, qte: number): boolean {
     let res = 0;
     res = Number((((nbrmonth1) * prixmonth1) + (nbrmonth2 * prixmonth2)) + avance);

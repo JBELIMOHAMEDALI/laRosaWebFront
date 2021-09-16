@@ -45,6 +45,7 @@ import { NgSelectConfig } from '@ng-select/ng-select';
 import { AddContratComponent } from './Private/Contrat/add-contrat/add-contrat.component';
 import { UpdateContratComponent } from './Private/Contrat/update-contrat/update-contrat.component';
 import { AddBeBsDetaileComponent } from './Private/Bons/poupUp/add-be-bs-detaile/add-be-bs-detaile.component';
+import { UpdatePaymentPoupComponent } from './private/payments/update-payment-poup/update-payment-poup.component';
 
 
 @NgModule({
@@ -83,6 +84,7 @@ import { AddBeBsDetaileComponent } from './Private/Bons/poupUp/add-be-bs-detaile
     AddContratComponent,
     UpdateContratComponent,
     AddBeBsDetaileComponent,
+    UpdatePaymentPoupComponent,
 
   ],
   imports: [

@@ -199,40 +199,30 @@
                 <h4 class="card-title">Détails du paiement</h4>
                 <div class="row" style="margin-bottom: 30px;">
                   <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Numero de contrat"
+                    <input type="text" class="form-control" placeholder="Numero de contrat" name="numero" ngModel #numero="ngModel" required
                       aria-label="Recipient's username">
                     <div class="input-group-append">
-                      <button type="button" class="btn btn-primary btn-icon-text"><i
+                      <button type="button" class="btn btn-primary btn-icon-text" [disabled]="numero.invalid" (click)="this.act(numero.value)"><i
                         class="fas fa-search-dollar btn-icon-prepend"></i> Payer </button>
-                    </div>
-                  </div>
-                  <div class="input-group">
-                    <div class="alert alert-fill-success" role="alert">
-                      <i class="fa fa-exclamation-triangle"></i>
-                      Paiement envoyé avec succès
-                    </div>
-                    <div class="alert alert-fill-danger" role="alert">
-                      <i class="fa fa-exclamation-triangle"></i>
-                      Paiement non envoyé
                     </div>
                   </div>
                 </div>
 
-                <div class="row">
+                <div class="row" *ngIf="this.ok">
                   <div class="col-lg-4">
                     <div class="border-bottom text-center pb-4">
                       <img
                         src="https://internationalbarcodes.com/wp-content/uploads/sites/95/2013/11/SSCC-Pallet-Barcode.jpg"
                         alt="profile" style="width: 300px;margin-bottom: 10px;" />
-                      <div class="d-flex justify-content-between">
-                        <button type="button" data-toggle="modal" data-target="#exampleModal"
-                          class="btn btn-outline-primary btn-icon-text"><i class="fas fa-edit btn-icon-prepend"></i>
-                          Modifier </button>
-                        <button type="button" class="btn btn-outline-primary btn-icon-text"><i
-                            class="fas fa-trash-alt btn-icon-prepend"></i> Supprimer </button>
-                        <button type="button" class="btn btn-outline-primary btn-icon-text"><i
-                            class="fas fa-print btn-icon-prepend"></i> Imprimer </button>
-                      </div>
+                        <div class="d-flex justify-content-between"><!--data-toggle="modal" data-target="#exampleModal"-->
+                          <button type="button"  [routerLink]="['/mangContrat',this.objectInfo.id]"
+                            class="btn btn-outline-primary btn-icon-text"><i class="fas fa-edit btn-icon-prepend"></i>
+                            Modifier </button>
+                          <button type="button" class="btn btn-outline-primary btn-icon-text" (click)="sahredserv.openDelete(this.objectInfo.id.toString(),'Contrat','contrat',true,'/contrats');"><i
+                              class="fas fa-trash-alt btn-icon-prepend"></i> Supprimer </button>
+                          <button type="button" class="btn btn-outline-primary btn-icon-text"><i
+                              class="fas fa-print btn-icon-prepend"></i> Imprimer </button>
+                        </div>
                     </div>
                     <div class="py-4">
                       <p class="clearfix">
@@ -240,7 +230,7 @@
                           Numéro de contrat
                         </span>
                         <span class="float-right text-muted">
-                          22000111
+                          {{this.objectInfo.numero}}
                         </span>
                       </p>
                       <p class="clearfix">
@@ -248,7 +238,8 @@
                           Client
                         </span>
                         <span type="button" class="float-right btn-link">
-                          Yassine Karrech
+                          {{this.objectInfo.client}}
+
                         </span>
                       </p>
                       <p class="clearfix">
@@ -256,7 +247,7 @@
                           Article
                         </span>
                         <span class="float-right text-muted">
-                          Séchoir
+                          {{this.objectInfo.article}}
                         </span>
                       </p>
                       <p class="clearfix">
@@ -264,7 +255,8 @@
                           Quantité
                         </span>
                         <span class="float-right text-muted">
-                          1
+                          {{this.objectInfo.qte}}
+
                         </span>
                       </p>
                       <p class="clearfix">
@@ -272,7 +264,8 @@
                           Recouvreur
                         </span>
                         <span class="float-right text-muted">
-                          Foulen 1
+                          {{this.objectInfo.recouvreur}}
+
                         </span>
                       </p>
                       <p class="clearfix">
@@ -280,7 +273,8 @@
                           Chef
                         </span>
                         <span class="float-right text-muted">
-                          Foulen 2
+                          {{this.objectInfo.chef}}
+
                         </span>
                       </p>
                       <p class="clearfix">
@@ -288,7 +282,8 @@
                           Vendeur
                         </span>
                         <span class="float-right text-muted">
-                          Foulen 3
+                          {{this.objectInfo.commission_vendeur}}
+
                         </span>
                       </p>
                       <p class="clearfix">
@@ -296,7 +291,8 @@
                           Date de contrat
                         </span>
                         <span class="float-right text-muted">
-                          20/05/2021
+                          {{this.objectInfo.datecontrat}}
+
                         </span>
                       </p>
                       <p class="clearfix">
@@ -304,7 +300,8 @@
                           Avance
                         </span>
                         <span class="float-right badge-info">
-                          20
+                          {{this.objectInfo.avance}}
+
                         </span>
                       </p>
                       <p class="clearfix">
@@ -312,7 +309,7 @@
                           Total
                         </span>
                         <span class="float-right badge-success">
-                          395
+                          {{this.objectInfo.montant}}
                         </span>
                       </p>
                       <p class="clearfix">
@@ -320,7 +317,8 @@
                           Payé
                         </span>
                         <span class="float-right badge-warning">
-                          175
+                          {{this.objectInfo.payeyedsom}}
+
                         </span>
                       </p>
                       <p class="clearfix">
@@ -328,7 +326,7 @@
                           Reste
                         </span>
                         <span class="float-right badge-danger">
-                          220
+                          {{this.objectInfo.montant-this.objectInfo.payeyedsom}}
                         </span>
                       </p>
                     </div>
@@ -338,7 +336,6 @@
                       <table class="table table-hover">
                         <thead>
                           <tr>
-                            <th>#</th>
                             <th>Date</th>
                             <th>Mensualité</th>
                             <th>Payé</th>
@@ -347,14 +344,22 @@
                             <th>Edition</th>
                           </tr>
                         </thead>
-                        <tbody>
+                        <tbody  *ngFor="let item of this.listPaymentContras | paginate: { itemsPerPage: 10, currentPage: p }" >
                           <tr>
-                            <td>1</td>
-                            <td>26/05/2021</td>
-                            <td>35</td>
-                            <td>35</td>
-                            <td>26/05/2021</td>
-                            <td>0</td>
+                            <!-- Contrat: "20003788"
+                            Date: "15/déc./2020"
+                            Mensualite: "35"
+                            PaiedAmmount: "35"
+                            Reste: "0"
+                            Validation: 0
+                            dp: "15-03-2021"
+                            id: 241 -->
+                            <td>{{item.Date}}</td>
+                            <td>{{item.Mensualite}}</td>
+                            <td>{{item.PaiedAmmount}}</td>
+                            <td>{{item.dp}}</td>
+                            <td>{{item.Reste}}</td>
+
                             <td>
                               <div type="button" data-toggle="modal" data-target="#exampleModal1"
                                 style="margin-right: 10px;" class="badge badge-pill badge-primary"><i
@@ -363,134 +368,11 @@
                                   class="fas fa-trash-alt"></i></div>
                             </td>
                           </tr>
-                          <tr>
-                            <td>2</td>
-                            <td>26/06/2021</td>
-                            <td>35</td>
-                            <td>35</td>
-                            <td>26/06/2021</td>
-                            <td>0</td>
-                            <td>
-                              <div type="button" style="margin-right: 10px;" class="badge badge-pill badge-primary"><i
-                                  class="fas fa-edit"></i></div>
-                              <div type="button" style="margin-right: 10px;" class="badge badge-pill badge-primary"><i
-                                  class="fas fa-trash-alt"></i></div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>3</td>
-                            <td>26/07/2021</td>
-                            <td>35</td>
-                            <td>35</td>
-                            <td>26/07/2021</td>
-                            <td>0</td>
-                            <td>
-                              <div type="button" style="margin-right: 10px;" class="badge badge-pill badge-primary"><i
-                                  class="fas fa-edit"></i></div>
-                              <div type="button" style="margin-right: 10px;" class="badge badge-pill badge-primary"><i
-                                  class="fas fa-trash-alt"></i></div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>4</td>
-                            <td>26/08/2021</td>
-                            <td>35</td>
-                            <td>35</td>
-                            <td>26/08/2021</td>
-                            <td>0</td>
-                            <td>
-                              <div type="button" style="margin-right: 10px;" class="badge badge-pill badge-primary"><i
-                                  class="fas fa-edit"></i></div>
-                              <div type="button" style="margin-right: 10px;" class="badge badge-pill badge-primary"><i
-                                  class="fas fa-trash-alt"></i></div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>5</td>
-                            <td>26/09/2021</td>
-                            <td>35</td>
-                            <td>35</td>
-                            <td>26/09/2021</td>
-                            <td>0</td>
-                            <td>
-                              <div type="button" style="margin-right: 10px;" class="badge badge-pill badge-primary"><i
-                                  class="fas fa-edit"></i></div>
-                              <div type="button" style="margin-right: 10px;" class="badge badge-pill badge-primary"><i
-                                  class="fas fa-trash-alt"></i></div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>6</td>
-                            <td>26/10/2021</td>
-                            <td>35</td>
-                            <td>35</td>
-                            <td>26/10/2021</td>
-                            <td>0</td>
-                            <td>
-                              <div type="button" style="margin-right: 10px;" class="badge badge-pill badge-primary"><i
-                                  class="fas fa-edit"></i></div>
-                              <div type="button" style="margin-right: 10px;" class="badge badge-pill badge-primary"><i
-                                  class="fas fa-trash-alt"></i></div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>7</td>
-                            <td>26/11/2021</td>
-                            <td>35</td>
-                            <td>35</td>
-                            <td>26/11/2021</td>
-                            <td>0</td>
-                            <td>
-                              <div type="button" style="margin-right: 10px;" class="badge badge-pill badge-primary"><i
-                                  class="fas fa-edit"></i></div>
-                              <div type="button" style="margin-right: 10px;" class="badge badge-pill badge-primary"><i
-                                  class="fas fa-trash-alt"></i></div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>8</td>
-                            <td>26/12/2021</td>
-                            <td>40</td>
-                            <td>0</td>
-                            <td></td>
-                            <td>40</td>
-                            <td>
-                              <div type="button" style="margin-right: 10px;" class="badge badge-pill badge-primary"><i
-                                  class="fas fa-edit"></i></div>
-                              <div type="button" style="margin-right: 10px;" class="badge badge-pill badge-primary"><i
-                                  class="fas fa-trash-alt"></i></div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>9</td>
-                            <td>26/01/2022</td>
-                            <td>40</td>
-                            <td>0</td>
-                            <td></td>
-                            <td>40</td>
-                            <td>
-                              <div type="button" style="margin-right: 10px;" class="badge badge-pill badge-primary"><i
-                                  class="fas fa-edit"></i></div>
-                              <div type="button" style="margin-right: 10px;" class="badge badge-pill badge-primary"><i
-                                  class="fas fa-trash-alt"></i></div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>10</td>
-                            <td>26/02/2022</td>
-                            <td>40</td>
-                            <td>0</td>
-                            <td></td>
-                            <td>40</td>
-                            <td>
-                              <div type="button" style="margin-right: 10px;" class="badge badge-pill badge-primary"><i
-                                  class="fas fa-edit"></i></div>
-                              <div type="button" style="margin-right: 10px;" class="badge badge-pill badge-primary"><i
-                                  class="fas fa-trash-alt"></i></div>
-                            </td>
-                          </tr>
+
                         </tbody>
                       </table>
+                      <pagination-controls style="text-align: center;" (pageChange)="p = $event"></pagination-controls>
+
                     </div>
                   </div>
                 </div>

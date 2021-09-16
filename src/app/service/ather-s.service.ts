@@ -49,6 +49,16 @@ export class AtherSService {
   {
     return this.httpClient.get(environment.apiUrl+`contrat/get/${id}`);
   }
+
+
+
+
+  //
+
+  paymentContra(obj:any)
+  {
+    return this.httpClient.post("http://localhost:5001/payment/payment-contra",obj);
+  }
   // getContraBayNumero(num:string)
   // {
   //   return this.httpClient.get(environment.apiUrl+`contrat/getContraBayNumro/${num}`);
