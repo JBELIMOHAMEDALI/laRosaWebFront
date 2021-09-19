@@ -15,23 +15,37 @@ export class AddBeBsDetaileComponent implements OnInit {
   @Input() titre: string = "";
   @Input() id: any;
   @Input() nomTab: string="";
+  @Input() item:any;
+  @Input() id_reg:any;
   model: any = {};
   listRegion: any[] = []
   listZone: any[] = [];
   listContra: any[] = []
   regition: string = ""
   obj:any;
+  obj2:any;
+  region_nom:string="";
   constructor(public activeModal: NgbActiveModal, private shared: SharedService, private atherserv: AtherSService) { }
 
 
   ngOnInit(): void {
     this.getlistRgion();
     this.getListContra();
+if(!this.add){
+  this.getListZone(this.id_reg)
+    this.model.num_contrat=this.item.num_contrat
+    this.model.region=this.id_reg
+    this.model.zone=this.item.Zone
+}
   }
-  mangerForm(f: NgForm) {//(id_num_be,num_contrat,zone,region)
+  async mangerForm(f: NgForm) {//(id_num_be,num_contrat,zone,region)
     const { num_contrat, region, zone } = f.value;
-    if(this.nomTab==="docbe1")
+    if(this.add)
+{    if(this.nomTab==="docbe1")
     {
+
+
+
       this.obj = { id_num_be: this.id, num_contrat: num_contrat['numero'], region: this.regition, zone: zone }
     }else
     {
@@ -47,7 +61,33 @@ export class AddBeBsDetaileComponent implements OnInit {
         this.activeModal.dismiss()
         swal('Error', 'Quelque Chose Ne Fonctionne Pas', 'error')
       }
-    })
+    })}
+    else{
+// alert(JSON.stringify(f.value))
+
+
+await this.atherserv.getOneBayId(region,"region").subscribe({
+  next: (data) => {
+    const donne: any = data;
+    this.region_nom=donne.nom_region;
+    const { num_contrat, region, zone } = f.value;
+    if(this.nomTab==="docbe1")
+    {
+
+      this.obj2 = { id_num_be: this.id, num_contrat: num_contrat, region: this.regition, zone: zone,id:this.item.id }
+    }else
+    {
+      this.obj2 = { id_num_bs: this.id, num_contrat: num_contrat, region: this.regition, zone: zone,id:this.item.id }
+    }
+this.shared.UpdateAll(this.obj2,this.nomTab);
+
+  }, error: (err) => {
+
+  }
+})
+
+
+    }
   }
 
   async getListZone(id: string) {
@@ -85,4 +125,5 @@ export class AddBeBsDetaileComponent implements OnInit {
       }
     })
   }
+
 }

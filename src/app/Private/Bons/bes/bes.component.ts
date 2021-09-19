@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AtherSService } from 'src/app/service/ather-s.service';
 import { SharedService } from 'src/app/service/shared.service';
 import { AddUpdateBesComponent } from '../poupUp/add-update-bes/add-update-bes.component';
 
@@ -12,7 +13,8 @@ export class BESComponent implements OnInit {
   listBes: any[] = [];
   p:number=1;
   term: any;
-  constructor(public sahredserv:SharedService,private modalService: NgbModal) { }
+  listZone:any[]=[];
+  constructor(public sahredserv:SharedService,private modalService: NgbModal,private atherserv:AtherSService) { }
 
   ngOnInit(): void {
     this.getListBes();
@@ -50,4 +52,6 @@ export class BESComponent implements OnInit {
     modalRef.componentInstance.item = item;
     modalRef.componentInstance.nomControler = 'be';
   }
+
+
 }

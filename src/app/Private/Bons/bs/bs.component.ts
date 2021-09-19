@@ -90,4 +90,24 @@ export class BSComponent implements OnInit {
     modalRef.componentInstance.nomControler = 'bs';
   }
 
+  openUpdate2(item:any)
+  {
+
+    this.atherserv.getIdRegion(item.Region,item.Zone).subscribe({
+      next: (data) => {
+        const donne: any = data;
+        const modalRef = this.modalService.open(AddBeBsDetaileComponent);
+        modalRef.componentInstance.add = false;
+        modalRef.componentInstance.titre = " Modifier Détails Du Bon sortie";
+        modalRef.componentInstance.id = this.active_id;// 'docbe1'nomTab
+        modalRef.componentInstance.nomTab = "docbs1";// ''
+        modalRef.componentInstance.item = item
+        modalRef.componentInstance.id_reg = donne.id_reg;
+        modalRef.componentInstance.id_zone = donne.id_zon;
+      }, error: (err) => {
+      }
+    })
+
+  }
+
 }
