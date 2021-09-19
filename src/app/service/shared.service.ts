@@ -35,7 +35,7 @@ export class SharedService {
         next: (data) => {
           this.modalService.dismissAll();
           swal('Success', '', 'success');
-          if(!rederect){ this.reloadComponent()}else{  this.router.navigate([pageRederect]);}
+          if(!rederect){ this.reloadComponent()}else{this.router.navigate([pageRederect]);}
 
         }, error: () => {
           this.modalService.dismissAll();

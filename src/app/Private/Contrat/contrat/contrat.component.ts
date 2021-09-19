@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AtherSService } from 'src/app/service/ather-s.service';
 import { SharedService } from 'src/app/service/shared.service';
+import { UpComponent } from '../../pay/up/up.component';
 
 @Component({
   selector: 'app-contrat',
@@ -48,6 +49,13 @@ export class ContratComponent implements OnInit {
       }
     })
   }
+  openUpdate(item:any)
+{//20010054
+  const modalRef = this.modalService.open(UpComponent,);
+  modalRef.componentInstance.titre = "Modifier d'une Paiements";
+  modalRef.componentInstance.item = item;
+  modalRef.componentInstance.ok = false;
+}
   // async getContraBayNumero() {
   //   await this.atherserv.getContraBayNumero(this.active_id).subscribe({
   //     next: (data) => {

@@ -208,7 +208,8 @@
                   </div>
                 </div>
 
-                <div class="row" *ngIf="this.ok">
+                <!-- <div class="row" > -->
+                  <div class="row" *ngIf="this.ok">
                   <div class="col-lg-4">
                     <div class="border-bottom text-center pb-4">
                       <img
@@ -336,6 +337,7 @@
                       <table class="table table-hover">
                         <thead>
                           <tr>
+                            <th>id</th>
                             <th>Date</th>
                             <th>Mensualité</th>
                             <th>Payé</th>
@@ -346,25 +348,17 @@
                         </thead>
                         <tbody  *ngFor="let item of this.listPaymentContras | paginate: { itemsPerPage: 10, currentPage: p }" >
                           <tr>
-                            <!-- Contrat: "20003788"
-                            Date: "15/déc./2020"
-                            Mensualite: "35"
-                            PaiedAmmount: "35"
-                            Reste: "0"
-                            Validation: 0
-                            dp: "15-03-2021"
-                            id: 241 -->
+                            <td>{{item.id}}</td>
                             <td>{{item.Date}}</td>
                             <td>{{item.Mensualite}}</td>
                             <td>{{item.PaiedAmmount}}</td>
                             <td>{{item.dp}}</td>
                             <td>{{item.Reste}}</td>
-
                             <td>
-                              <div type="button" data-toggle="modal" data-target="#exampleModal1"
+                              <div type="button" (click)="openUpdate(item)"
                                 style="margin-right: 10px;" class="badge badge-pill badge-primary"><i
                                   class="fas fa-edit"></i></div>
-                              <div type="button" style="margin-right: 10px;" class="badge badge-pill badge-primary"><i
+                              <div type="button" style="margin-right: 10px;" class="badge badge-pill badge-primary" (click)="this.sahredserv.openDelete(item.id,'Détails Paiements','payment')"><i
                                   class="fas fa-trash-alt"></i></div>
                             </td>
                           </tr>

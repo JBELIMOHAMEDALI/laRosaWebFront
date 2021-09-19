@@ -3,6 +3,12 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AtherSService } from 'src/app/service/ather-s.service';
 import { SharedService } from 'src/app/service/shared.service';
 import swal from 'sweetalert';
+import { AddUpdateBesComponent } from '../../Bons/poupUp/add-update-bes/add-update-bes.component';
+import { UpComponent } from '../../pay/up/up.component';
+
+
+
+
 @Component({
   selector: 'app-payment',
   templateUrl: './payment.component.html',
@@ -14,7 +20,7 @@ p:number=1;
 active_id:string=""
 objectInfo: any;
 listPaymentContras:any[]=[];
-  constructor(private atherserv:AtherSService,public sahredserv:SharedService,private modalService: NgbModal,) { }
+  constructor(private modalService: NgbModal,private atherserv:AtherSService,public sahredserv:SharedService) { }
 
   ngOnInit(): void {
   }//payment/get-payment
@@ -70,13 +76,19 @@ async getListContra(id:string) {
   })
 }
 
-openUpdate()
-{
-  const obj={date:this.objectInfo.date,recouvreur:this.objectInfo.recouvreur}
-  // const modalRef = this.modalService.open(UpdatePaymentPoupComponent,);
-  // modalRef.componentInstance.add = false;
-  // modalRef.componentInstance.titre = "Modifier d'une Bons d'entrée";
-  // modalRef.componentInstance.item = obj;
-  // modalRef.componentInstance.nomControler = 'be';
+// openUpdate()
+// {
+//   const obj={date:this.objectInfo.date,recouvreur:this.objectInfo.recouvreur}
+//   const modalRef = this.modalService.open(UpPaymentComponent);
+//   modalRef.componentInstance.add = false;
+//   modalRef.componentInstance.titre = "Modifier d'une Bons d'entrée";
+//   modalRef.componentInstance.item = obj;
+//   modalRef.componentInstance.nomControler = 'be';
+// }
+openUpdate(item:any)
+{//20010054
+  const modalRef = this.modalService.open(UpComponent,);
+  modalRef.componentInstance.titre = "Modifier d'une Paiements";
+  modalRef.componentInstance.item = item;
 }
 }
