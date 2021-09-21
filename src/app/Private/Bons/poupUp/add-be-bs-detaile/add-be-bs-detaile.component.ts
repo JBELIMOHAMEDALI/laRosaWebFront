@@ -63,9 +63,6 @@ if(!this.add){
       }
     })}
     else{
-// alert(JSON.stringify(f.value))
-
-
 await this.atherserv.getOneBayId(region,"region").subscribe({
   next: (data) => {
     const donne: any = data;
@@ -73,16 +70,13 @@ await this.atherserv.getOneBayId(region,"region").subscribe({
     const { num_contrat, region, zone } = f.value;
     if(this.nomTab==="docbe1")
     {
-
       this.obj2 = { id_num_be: this.id, num_contrat: num_contrat, region: this.regition, zone: zone,id:this.item.id }
     }else
     {
       this.obj2 = { id_num_bs: this.id, num_contrat: num_contrat, region: this.regition, zone: zone,id:this.item.id }
     }
 this.shared.UpdateAll(this.obj2,this.nomTab);
-
   }, error: (err) => {
-
   }
 })
 

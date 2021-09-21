@@ -8,8 +8,6 @@ import { environment } from './../../environments/environment.prod';
 export class AtherSService {
 
   constructor(private httpClient: HttpClient) { }
-  //http://localhost:5001//getZoneByRegion/2
-
   getZoneBayRegion(id: string) {
     return this.httpClient.get(environment.apiUrl + `zone/getZoneByRegion/${id}`);
   }
@@ -39,7 +37,7 @@ export class AtherSService {
   getInfoContraPayment(id:string)
   {
     return this.httpClient.get(environment.apiUrl+`payment/get_detalie_payment_contra/${id}`);
-  }//contrat/getInfoContra/
+  }
 
   getContratInfo(id:string)
   {
@@ -49,19 +47,13 @@ export class AtherSService {
   {
     return this.httpClient.get(environment.apiUrl+`contrat/get/${id}`);
   }
-
-
-
-
-  //
-
   paymentContra(obj:any)
   {
-    return this.httpClient.post("http://localhost:5001/payment/payment-contra",obj);
+    return this.httpClient.post(environment.apiUrl+"payment/payment-contra",obj);
   }
-  // getContraBayNumero(num:string)
-  // {
-  //   return this.httpClient.get(environment.apiUrl+`contrat/getContraBayNumro/${num}`);
-  // }
+  getStatContrat(obj:any)
+  {
+    return this.httpClient.post(environment.apiUrl+"contrat/stat-contrat",obj);
+  }
 
 }

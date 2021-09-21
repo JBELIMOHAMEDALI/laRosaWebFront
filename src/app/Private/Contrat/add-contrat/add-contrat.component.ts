@@ -65,26 +65,11 @@ export class AddContratComponent implements OnInit {
   }
 
   mangerForm(f: NgForm) {
-
     var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     const daysFR: any = { 'Sunday': 'dimanche', 'Monday': 'lundi', 'Tuesday': 'mardi', 'Wednesday': 'mercredi', 'Thursday': 'jeudi', 'Friday': 'vendredi', 'Saturday': 'samedi' };
     var monthFr: any = { '01': 'janvier', '02': 'février', '03': 'mars', '04': 'avril', '05': 'mai', '06': 'juin', '07': 'juillet', '08': 'août', '09': 'septembre', '10': 'octobre', '11': 'novembre', '12': 'décembre' };
     let datePrmerech: any = this.datepipe.transform(f.value.premiereecheance, 'dd-MM-yyyy');
-
     let dd = datePrmerech.toString()
-
-    //add 10row in Payment
-
-
-
-
-
-
-
-
-
-
-//end add 10row in Payment
     const day = dd.substr(0, 2);
     const month = dd.substr(3, 2);
     const year = dd.substr(6, 4);
@@ -106,7 +91,7 @@ export class AddContratComponent implements OnInit {
 
     // add 10 row
 
-// console.log(liste);
+    // console.log(liste);
 
     // end  add 10 row
 
@@ -122,36 +107,36 @@ export class AddContratComponent implements OnInit {
       }
       this.shared.addAll(obj, 'contrat').subscribe({
         next: (data) => {
-//add new 10 row;
-var liste: Array<Object> = [];
-let datePrmerech2: any = this.datepipe.transform(f.value.premiereecheance, 'yyyy-MM-dd');
-var myFutureDate=new Date(datePrmerech2);
-const obj2= {contrat:numero, date:this.datepipe.transform(myFutureDate, 'd/MMM/y')?.toString(), mensualite:annuite, paiedAmmount:0, dp:"", reste:annuite, validation:0}
-liste.push(obj2)
-for (var _i = 1; _i < nbrecheance; _i++) {
-var newd=myFutureDate.setMonth(myFutureDate.getMonth()+1)
-var datenew =this.datepipe.transform(newd, 'd/MMM/y')
-const obj= {contrat:numero, date:datenew, mensualite:annuite, paiedAmmount:0, dp:"", reste:annuite, validation:0}
-liste.push(obj)
-}
-const dn:any=liste[nbrecheance-1]
-var datte2=dn['Date']
-var date01:any =this.datepipe.transform(datte2, 'yyyy-MM-dd');
-var myFutureDate2=new Date(date01);
-for (var _i = 0; _i < annuite2; _i++) {
-var newd=myFutureDate2.setMonth(myFutureDate2.getMonth()+1)
-var datenew2 =this.datepipe.transform(newd, 'd/MMM/y')
-const obj= {contrat:numero.toString(), date:datenew2?.toString(), mensualite:mensualite2.toString(), paiedAmmount:"0", dp:"", reste:mensualite2.toString(), validation:0}
-liste.push(obj)
-}
-liste.forEach(element =>{
-this.shared.addAll(element, 'payment').subscribe({
-next: (data) => {
-}, error: (err) => {
-  swal('Error', 'Quelque Chose Ne Fonctionne Pas', 'error')
-}
-})
-});
+          //add new 10 row;
+          var liste: Array<Object> = [];
+          let datePrmerech2: any = this.datepipe.transform(f.value.premiereecheance, 'yyyy-MM-dd');
+          var myFutureDate = new Date(datePrmerech2);
+          const obj2 = { contrat: numero, date: this.datepipe.transform(myFutureDate, 'd/MMM/y')?.toString(), mensualite: annuite, paiedAmmount: 0, dp: "", reste: annuite, validation: 0 }
+          liste.push(obj2)
+          for (var _i = 1; _i < nbrecheance; _i++) {
+            var newd = myFutureDate.setMonth(myFutureDate.getMonth() + 1)
+            var datenew = this.datepipe.transform(newd, 'd/MMM/y')
+            const obj = { contrat: numero, date: datenew, mensualite: annuite, paiedAmmount: 0, dp: "", reste: annuite, validation: 0 }
+            liste.push(obj)
+          }
+          const dn: any = liste[nbrecheance - 1]
+          var datte2 = dn['Date']
+          var date01: any = this.datepipe.transform(datte2, 'yyyy-MM-dd');
+          var myFutureDate2 = new Date(date01);
+          for (var _i = 0; _i < annuite2; _i++) {
+            var newd = myFutureDate2.setMonth(myFutureDate2.getMonth() + 1)
+            var datenew2 = this.datepipe.transform(newd, 'd/MMM/y')
+            const obj = { contrat: numero.toString(), date: datenew2?.toString(), mensualite: mensualite2.toString(), paiedAmmount: "0", dp: "", reste: mensualite2.toString(), validation: 0 }
+            liste.push(obj)
+          }
+          liste.forEach(element => {
+            this.shared.addAll(element, 'payment').subscribe({
+              next: (data) => {
+              }, error: (err) => {
+                swal('Error', 'Quelque Chose Ne Fonctionne Pas', 'error')
+              }
+            })
+          });
 
           this.router.navigate(['/contrats']);
           swal('Success', '', 'success');

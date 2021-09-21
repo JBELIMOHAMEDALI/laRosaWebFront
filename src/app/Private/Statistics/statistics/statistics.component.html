@@ -202,28 +202,28 @@
                       <i class="icon-sm fa fa-file-contract mr-2"></i>
                       Contrats
                     </p>
-                    <h2>10664</h2>
+                    <h2>{{this.nbrContra}}</h2>
                   </div>
                   <div class="statistics-item">
                     <p>
                       <i class="icon-sm fas fa-dollar-sign mr-2"></i>
                       Total
                     </p>
-                    <h2>16100</h2>
+                    <h2>{{this.Total}}</h2>
                   </div>
                   <div class="statistics-item">
                     <p>
                       <i class="icon-sm fas fa-cloud-download-alt mr-2"></i>
                       Récu
                     </p>
-                    <h2>12600</h2>
+                    <h2>{{this.Recu}}</h2>
                   </div>
                   <div class="statistics-item">
                     <p>
                       <i class="icon-sm fas fa-cloud-upload-alt mr-2"></i>
                       A Payer
                     </p>
-                    <h2>3500</h2>
+                    <h2>{{this.APayer}}</h2>
                   </div>
                 </div>
               </div>
@@ -236,13 +236,21 @@
               <div class="card-body">
                 <h4 class="card-title">Détails des statistiques</h4>
 
-                <form class="form-sample">
+                <form class="form" name="form" #f="ngForm" (ngSubmit)="this.mangerForm(f)">
                   <div class="row">
                     <div class="col-md-4">
                       <div class="form-group row">
                         <label class="col-sm-3 col-form-label">Article</label>
                         <div class="col-sm-9">
-                          <input type="text" class="form-control">
+                          <div class="form-group row">
+                            <ng-select [items]="listArt" bindLabel="nom" appendTo="body"
+                              placeholder="Sélectionner un Article" [searchable]="true" [(ngModel)]="this.model.article"
+                              #article="ngModel" name="article" required>
+                            </ng-select>
+                          </div>
+                          <div *ngIf="(article.invalid && article.touched)" class="alert alert-danger p-2">
+                            Saisir la Article
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -250,14 +258,25 @@
                       <div class="form-group row">
                         <label class="col-sm-3 col-form-label">Recouvreur</label>
                         <div class="col-sm-9">
-                          <input type="text" class="form-control">
+                          <div class="form-group row">
+                            <ng-select [items]="listRecouvreur" bindLabel="nom" appendTo="body"
+                              placeholder="Sélectionner un Recouvreur" [searchable]="true"
+                              [(ngModel)]="this.model.recouvreur" #recouvreur="ngModel" name="recouvreur" required>
+
+                            </ng-select>
+
+
+                          </div>
+                          <div *ngIf="(recouvreur.invalid && recouvreur.touched)" class="alert alert-danger p-2">
+                            Sélectionner un Recouvreur
+                          </div>
                         </div>
                       </div>
                     </div>
                     <div class="col-md-4">
                       <div class="form-group row">
                         <label class="col-sm-6 col-form-label">Contrats</label>
-                        <label class="col-sm-6 col-form-label">11225</label>
+                        <label class="col-sm-6 col-form-label">{{nbrContra}}</label>
                       </div>
                     </div>
                   </div>
@@ -266,7 +285,15 @@
                       <div class="form-group row">
                         <label class="col-sm-3 col-form-label">Chef</label>
                         <div class="col-sm-9">
-                          <input class="form-control">
+                          <div class="form-group row">
+                            <ng-select [items]="listChefGroupe" bindLabel="nom" appendTo="body"
+                              placeholder="Sélectionner un Chef" [searchable]="true" [(ngModel)]="this.model.chef"
+                              #chef="ngModel" name="chef" required>
+                            </ng-select>
+                          </div>
+                          <div *ngIf="(chef.invalid && chef.touched)" class="alert alert-danger p-2">
+                            Sélectionner un Chef
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -274,14 +301,26 @@
                       <div class="form-group row">
                         <label class="col-sm-3 col-form-label">Commercial</label>
                         <div class="col-sm-9">
-                          <input class="form-control">
+                          <div class="form-group row">
+                            <ng-select [items]="listVendeurCommercial" bindLabel="nom" appendTo="body"
+                              placeholder="Sélectionner un Commission vendeur" [searchable]="true"
+                              [(ngModel)]="this.model.commission_vendeur" #commission_vendeur="ngModel"
+                              name="commission_vendeur" required>
+
+                            </ng-select>
+
+                          </div>
+                          <div *ngIf="(commission_vendeur.invalid && commission_vendeur.touched)"
+                            class="alert alert-danger p-2">
+                            Sélectionner un Commission vendeur
+                          </div>
                         </div>
                       </div>
                     </div>
                     <div class="col-md-4">
                       <div class="form-group row">
                         <label class="col-sm-6 col-form-label">Total</label>
-                        <label class="col-sm-6 col-form-label">1166545</label>
+                        <label class="col-sm-6 col-form-label">{{Total}}</label>
                       </div>
                     </div>
                   </div>
@@ -290,15 +329,24 @@
                       <div class="form-group row">
                         <label class="col-sm-3 col-form-label">Client</label>
                         <div class="col-sm-9">
-                          <input class="form-control">
+                          <div class="form-group row">
+                            <ng-select [items]="listClient" bindLabel="nom" appendTo="body"
+                              placeholder="Sélectionner un client" [searchable]="true" [(ngModel)]="this.model.client"
+                              #client="ngModel" name="client" required>
+                            </ng-select>
+                          </div>
+                          <div *ngIf="(client.invalid && client.touched)" class="alert alert-danger p-2">
+                            Saisir la Client
+                          </div>
                         </div>
                       </div>
                     </div>
                     <div class="col-md-4">
                       <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">Status</label>
+                        <label class="col-sm-3 col-form-label">Status Contrat</label>
                         <div class="col-sm-9">
-                          <select class="form-control">
+                          <select class="form-control" placeholder="" name="statucontrat"
+                            [(ngModel)]="this.model.statucontrat" #statucontrat="ngModel" required>
                             <option></option>
                             <option>En Cours</option>
                             <option>Fini</option>
@@ -307,72 +355,80 @@
                           </select>
                         </div>
                       </div>
-                    </div>
-                    <div class="col-md-4">
-                      <div class="form-group row">
-                        <label class="col-sm-6 col-form-label">Avances</label>
-                        <label class="col-sm-6 col-form-label">25416</label>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-4">
-                      <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">Zone</label>
-                        <div class="col-sm-9">
-                          <input type="text" class="form-control">
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-4">
-                      <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">Région</label>
-                        <div class="col-sm-9">
-                          <input type="text" class="form-control">
-                        </div>
+                      <div *ngIf="(statucontrat.invalid && statucontrat.touched)" class="alert alert-danger p-2">
+                        Saisir la Status du Contrat
                       </div>
                     </div>
                     <div class="col-md-4">
                       <div class="form-group row">
                         <label class="col-sm-6 col-form-label">Récu</label>
-                        <label class="col-sm-6 col-form-label">865425</label>
+                        <label class="col-sm-6 col-form-label">{{Recu}}</label>
                       </div>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-4">
                       <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">De</label>
+                        <label class="col-sm-3 col-form-label">Région</label>
                         <div class="col-sm-9">
-                          <input class="form-control" placeholder="jj/mm/aaaa">
+                          <div class="form-group row">
+                            <select class="form-control" (change)="getRegion($event)" [(ngModel)]="this.model.region"
+                              name="region" #region="ngModel" required>
+                              <ng-container *ngFor="let r of this.listRegion ">
+                                <option [value]="r.id">{{r.nom_region}}</option>
+                              </ng-container>
+                            </select>
+                          </div>
+                          <div *ngIf="(region.invalid && region.touched)" class="alert alert-danger p-2" role="alert">
+                            selectionner la Région
+                          </div>
                         </div>
                       </div>
                     </div>
                     <div class="col-md-4">
                       <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">À</label>
+                        <label class="col-sm-3 col-form-label">Zone</label>
                         <div class="col-sm-9">
-                          <input class="form-control" placeholder="jj/mm/aaaa">
+                          <div class="form-group row">
+                            <select class="form-control" [(ngModel)]="this.model.zone" name="zone" #zone="ngModel"
+                              required>
+                              <ng-container *ngFor="let z of this.listZone ">
+                                <option [value]="z.nom_zone">{{z.nom_zone}}</option>
+                              </ng-container>
+                            </select>
+
+                          </div>
+                          <div *ngIf="(zone.invalid && zone.touched)" class="alert alert-danger p-2" role="alert">
+                            selectionner la Zone
+                          </div>
                         </div>
                       </div>
                     </div>
                     <div class="col-md-4">
                       <div class="form-group row">
                         <label class="col-sm-6 col-form-label">A Payer</label>
-                        <label class="col-sm-6 col-form-label">116665</label>
+                        <label class="col-sm-6 col-form-label">{{this.APayer}}</label>
                       </div>
                     </div>
                   </div>
-                </form>
-                <div class="float-right" style="margin-bottom: 20px;">
-                  <button type="button" class="btn btn-outline-primary btn-icon-text" (click)="exportexcel()"><i
-                      class="fas fa-file-excel btn-icon-prepend"></i>
-                    Exporter </button>
-                  <button type="button" class="btn btn-primary btn-icon-text" style="margin-left: 10px;"><i
-                      class="fas fa-funnel-dollar btn-icon-prepend"></i> Chercher </button>
 
+
+                  <div class="float-right" style="margin-bottom: 20px;">
+                    <button type="button" [disabled]="!this.ok" class="btn btn-outline-primary btn-icon-text"
+                      (click)="exportexcel()"><i class="fas fa-file-excel btn-icon-prepend"></i>
+                      Exporter </button>
+                    <button type="submit" class="btn btn-primary btn-icon-text" style="margin-left: 10px;"><i
+                        class="fas fa-funnel-dollar btn-icon-prepend"></i> Chercher </button>
+
+                  </div>
+                </form>
+                <br><br>
+                <div style="text-align: center;">
+                  <div *ngIf="this.ok2" class="spinner-border" role="status">
+                    <span class="sr-only">Loading...</span>
+                  </div>
                 </div>
-                <div class="table-responsive">
+                <div *ngIf="this.ok" class="table-responsive">
                   <table class="table table-hover" id="excel-table">
                     <thead>
                       <tr>
@@ -386,73 +442,34 @@
                         <th>Edition</th>
                       </tr>
                     </thead>
-                    <tbody>
+
+
+
+                    <tbody *ngFor="let item of this.listData | paginate: { itemsPerPage: 5, currentPage: p }">
                       <tr>
-                        <td>20222111</td>
-                        <td>Yassine Karrech</td>
-                        <td>Aspirateur</td>
-                        <td>1</td>
-                        <td>12/05/2021</td>
-                        <td>16/05/2021</td>
+                        <td>{{item.numero}}</td>
+                        <td>{{item.client}}</td>
+                        <td>{{item.article}}</td>
+                        <td>{{item.qte}}</td>
+                        <td>{{item.datecontrat}}</td>
+                        <td>{{item.premiereecheance}}</td>
+                        <!-- <td>{{item.statucontrat}}</td> -->
                         <td>
-                          <div class="badge badge-info badge-pill">En Cours</div>
+                          <div *ngIf="item.statucontrat.toUpperCase()=='ENCOURS' || item.statucontrat.toUpperCase()=='EN COURS'" class="badge badge-info badge-pill">En Cours</div>
+                          <div *ngIf="item.statucontrat.toUpperCase()=='FINI'" class="badge badge-success badge-pill">Fini</div>
+                          <div *ngIf="item.statucontrat.toUpperCase()=='PROBLÉME'" class="badge badge-danger badge-pill">Probléme</div>
+                          <div *ngIf="item.statucontrat.toUpperCase()=='RETOUR'" class="badge badge-warning badge-pill">Retour</div>
+
+
                         </td>
                         <td>
                           <div type="button" routerlink="/contrat" class="badge badge-pill badge-primary"
-                            style="margin-right: 10px;" tabindex="0" ng-reflect-router-link="/contrat"><i
-                              class="fas fa-eye"></i></div>
+                                                style="margin-right: 10px;" tabindex="0" [routerLink]="['/contrat', item.numero]"><i
+                                                  class="fas fa-eye"></i></div>
                         </td>
-                      </tr>
-                      <tr>
-                        <td>20222111</td>
-                        <td>Yassine Karrech</td>
-                        <td>Aspirateur</td>
-                        <td>1</td>
-                        <td>12/05/2021</td>
-                        <td>16/05/2021</td>
-                        <td>
-                          <div class="badge badge-success badge-pill">Fini</div>
-                        </td>
-                        <td>
-                          <div type="button" routerlink="/contrat" class="badge badge-pill badge-primary"
-                            style="margin-right: 10px;" tabindex="0" ng-reflect-router-link="/contrat"><i
-                              class="fas fa-eye"></i></div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>20222111</td>
-                        <td>Yassine Karrech</td>
-                        <td>Aspirateur</td>
-                        <td>1</td>
-                        <td>12/05/2021</td>
-                        <td>16/05/2021</td>
-                        <td>
-                          <div class="badge badge-danger badge-pill">Probléme</div>
-                        </td>
-                        <td>
-                          <div type="button" routerlink="/contrat" class="badge badge-pill badge-primary"
-                            style="margin-right: 10px;" tabindex="0" ng-reflect-router-link="/contrat"><i
-                              class="fas fa-eye"></i></div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>20222111</td>
-                        <td>Yassine Karrech</td>
-                        <td>Aspirateur</td>
-                        <td>1</td>
-                        <td>12/05/2021</td>
-                        <td>16/05/2021</td>
-                        <td>
-                          <div class="badge badge-warning badge-pill">Retour</div>
-                        </td>
-                        <td>
-                          <div type="button" routerlink="/contrat" class="badge badge-pill badge-primary"
-                            style="margin-right: 10px;" tabindex="0" ng-reflect-router-link="/contrat"><i
-                              class="fas fa-eye"></i></div>
-                        </td>
-                      </tr>
                     </tbody>
                   </table>
+                  <pagination-controls style="text-align: center;" (pageChange)="p = $event"></pagination-controls>
                 </div>
               </div>
             </div>

@@ -58,6 +58,9 @@ export class SharedService {
   getDetaileBeBs(point:string,id:string) {
     return this.httpClient.get(environment.apiUrl + `${point}/getDetaile/${id}`);
   }
+  getAllBayEndPoint(point:string,endpoint:string,) {
+    return this.httpClient.get(environment.apiUrl + `${point}/${endpoint}`);
+  }
 }
 
 
